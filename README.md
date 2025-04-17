@@ -101,11 +101,16 @@ kubectl apply -f k8s/
 ```bash
 # 获取服务地址
 minikube service --url user-service
+minikube service --url order-service
 ```
 
 访问服务：
 - 用户服务：`<获取到的地址>/users`
 - 订单服务：`<获取到的地址>/orders`
+
+注意：
+- 使用 `minikube service --url` 获取的地址可以直接访问
+- 如果 `minikube service --url` 重启，需要重新获取地址
 
 ### 2.5 清理资源
 
