@@ -9,7 +9,8 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - http:
+    - host: microservices.local
+      http:
         paths:
           - path: /users
             pathType: Prefix
