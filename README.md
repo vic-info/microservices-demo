@@ -115,4 +115,25 @@ kubectl delete -f k8s/
 
 # 停止 minikube
 minikube stop
-``` 
+```
+
+### 2.6 故障恢复演示
+
+```bash
+# 查看当前运行的 Pod
+kubectl get pods
+
+# 模拟服务故障（删除用户服务 Pod）
+kubectl delete pod <user-service-pod-name>
+
+# 观察新 Pod 自动创建
+kubectl get pods -w
+
+# 验证服务是否恢复
+minikube service --url user-service
+```
+
+说明：
+- 虽然本地环境只有一个节点，但 Kubernetes 仍然会保证服务的可用性
+- 当 Pod 被删除后，Deployment 会自动创建新的 Pod 来替代
+- 这个过程演示了 Kubernetes 的自我修复能力 
