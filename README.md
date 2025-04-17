@@ -99,18 +99,17 @@ kubectl apply -f k8s/
 ### 2.4 获取访问地址
 
 ```bash
-# 获取服务地址
-minikube service --url user-service
-minikube service --url order-service
+# 获取 ingress-nginx 控制器地址
+minikube service -n ingress-nginx ingress-nginx-controller --url
 ```
 
 访问服务：
-- 用户服务：`<获取到的地址>/users`
-- 订单服务：`<获取到的地址>/orders`
+- 用户服务：`http://<ingress-url>/users`
+- 订单服务：`http://<ingress-url>/orders`
 
 注意：
-- 使用 `minikube service --url` 获取的地址可以直接访问
-- 如果 `minikube service --url` 重启，需要重新获取地址
+- 使用 `minikube service` 获取 ingress-nginx 控制器的地址
+- 如果 `minikube service` 服务重启，需要重新获取地址
 
 ### 2.5 清理资源
 
