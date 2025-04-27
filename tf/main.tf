@@ -24,6 +24,7 @@ module "vpc" {
 
   enable_dns_hostnames = true
   single_nat_gateway   = true
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "eks-vpc"
@@ -104,5 +105,5 @@ resource "aws_eks_node_group" "node_group" {
   }
 
   instance_types = ["t3.small"]
-  disk_size      = 10
+  disk_size      = 20
 }

@@ -24,7 +24,7 @@ aws eks update-kubeconfig --region us-west-2 --name microservices-demo-cluster
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/v2_5_4_full.yaml
 
 # 部署所有服务
-kubectl apply -f ../k8s/*.yaml
+kubectl apply -f ../k8s/
 ```
 
 ## 4. 获取访问地址
@@ -46,8 +46,18 @@ kubectl get ingress
 
 ```bash
 # 删除 Kubernetes 资源
-kubectl delete -f ../k8s/*.yaml
+kubectl delete -f ../k8s/
 
 # 销毁基础设施
 terraform destroy
 ``` 
+
+## 6. Debug
+
+```
+# cloudshell 存储空间低时须删除存储占用过大的目录
+# 列出存储占用目录
+du -sh ~/* ~/.??* 2>/dev/null | sort -hr | head -20
+
+# 删除对应的repo即可
+```
