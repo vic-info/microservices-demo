@@ -19,11 +19,33 @@ aws eks update-kubeconfig --region us-west-2 --name microservices-demo-cluster
 
 ## 3. 部署应用
 
-```bash
-# 安装 ALB Ingress Controller
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/v2_5_4_full.yaml
+### 3.1 先安装 Helm（CloudShell 环境）
 
-# 部署所有服务
+AWS CloudShell 默认未安装 Helm，请先执行：
+
+```bash
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+# 验证安装
+helm version
+```
+
+### 3.2 安装 AWS Load Balancer Controller（ALB Ingress Controller）
+
+```bash
+# 添加 Helm 仓库并安装 Controller
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update
+
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=microservices-demo-cluster \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller
+```
+
+### 3.3 部署所有服务
+
+```bash
 kubectl apply -f ../k8s/
 ```
 
