@@ -19,7 +19,7 @@ spec:
             - containerPort: 8081
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://ballast.proxy.rlwy.net:46375/postgres"
+              value: "jdbc:postgresql://ballast.proxy.rlwy.net:46375/railway"
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
           envFrom:
