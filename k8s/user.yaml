@@ -14,9 +14,17 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: kimikosa/demo-services
+          image: kimikosa/user-service
           ports:
             - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://ballast.proxy.rlwy.net:46375/postgres"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+          envFrom:
+            - secretRef:
+                name: db-secret
 ---
 apiVersion: v1
 kind: Service
