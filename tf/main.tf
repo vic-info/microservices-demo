@@ -106,6 +106,10 @@ resource "aws_eks_node_group" "node_group" {
 
   instance_types = ["t3.small"]
   disk_size      = 20
+
+  metadata_options {
+    http_tokens = "optional"
+  }
 }
 
 # --- AWS Load Balancer Controller IAM 角色与 ServiceAccount ---
