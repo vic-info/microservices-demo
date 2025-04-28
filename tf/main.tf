@@ -92,6 +92,15 @@ resource "aws_iam_role_policy_attachment" "ec2_container_registry" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
 
+resource "aws_launch_template" "eks" {
+  name_prefix   = "eks-node-"
+  instance_type = "t3.small"
+
+  metadata_options {
+    http_tokens = "optional"
+  }
+}
+
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.eks.name
   node_group_name = "demo-ng"
@@ -104,11 +113,9 @@ resource "aws_eks_node_group" "node_group" {
     min_size     = 1
   }
 
-  instance_types = ["t3.small"]
-  disk_size      = 20
-
-  metadata_options {
-    http_tokens = "optional"
+  launch_template {
+    id      = aws_launch_template.eks.id
+    version = "$Latest"
   }
 }
 
