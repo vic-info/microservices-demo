@@ -173,6 +173,7 @@ resource "aws_iam_policy" "alb_controller_policy" {
                 "elasticloadbalancing:DeregisterTargets",
                 "elasticloadbalancing:DescribeListenerCertificates",
                 "elasticloadbalancing:DescribeListeners",
+                "elasticloadbalancing:DescribeListenerAttributes",
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeLoadBalancerAttributes",
                 "elasticloadbalancing:DescribeRules",
