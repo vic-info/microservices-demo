@@ -26,6 +26,11 @@ module "vpc" {
   single_nat_gateway   = true
   map_public_ip_on_launch = true
 
+  public_subnet_tags = {
+    "kubernetes.io/cluster/microservices-demo-cluster" = "owned"
+    "kubernetes.io/role/elb" = "1"
+  }
+
   tags = {
     Name = "eks-vpc"
   }
