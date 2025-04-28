@@ -46,6 +46,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 ### 3.3 部署所有服务
 
 ```bash
+# 添加 database connection secret 到 k8s/secrets.yaml
 kubectl apply -f ../k8s/
 ```
 
